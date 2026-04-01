@@ -4784,3 +4784,7 @@ ul {
         font-size: 28px;
     }
 }
+
+fieldset {
+    display:none;
+}
