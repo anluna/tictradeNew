@@ -13,14 +13,14 @@
 
 @font-face {
     font-family: "Syne";
-    src: url("/assets/fonts/Syne/Syne.ttf") format("truetype");
+    src: url("/wp-content/themes/tictradeinternational/assets/fonts/Syne/Syne.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
 }
 
 @font-face {
     font-family: "DM_Sans";
-    src: url("assets/fonts/DM_Sans/DMSans-VariableFont_opszwght.ttf") format("truetype");
+    src: url("/wp-content/themes/tictradeinternational/assets/fonts/DM_Sans/DMSans-VariableFont_opszwght.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
@@ -213,7 +213,7 @@ ul {
     position: absolute;
     inset: 0;
     z-index: 0;
-    background-image: url('/wp-content/themes/tictradeinternational/assets/img/logotic-black.png');
+    background-image: url('/assets/img/logotic-black.png');
     background-repeat: repeat;
     background-size: 160px auto;
     background-position: center;
@@ -5047,19 +5047,19 @@ ul {
 }
 
 .valores__item--naranja::before {
-    background-image: url('/wp-content/themes/tictradeinternational/assets/img/logotic-black.png');
+    background-image: url('/assets/img/logotic-black.png');
     opacity: 0.10;
     mix-blend-mode: multiply;
 }
 
 .valores__item--blanco::before {
-    background-image: url('/wp-content/themes/tictradeinternational/assets/img/logotic-black.png');
+    background-image: url('/assets/img/logotic-black.png');
     opacity: 0.08;
     mix-blend-mode: multiply;
 }
 
 .valores__item--negro::before {
-    background-image: url('/wp-content/themes/tictradeinternational/assets/img/TIC-WHITE.png');
+    background-image: url('/assets/img/TIC-WHITE.png');
     opacity: 0.18;
     mix-blend-mode: screen;
 }
