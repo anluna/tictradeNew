@@ -13,14 +13,14 @@
 
 @font-face {
     font-family: "Syne";
-    src: url("/wp-content/themes/tictradeinternational/assets/fonts/Syne/Syne.ttf") format("truetype");
+    src: url("/assets/fonts/Syne/Syne.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
 }
 
 @font-face {
     font-family: "DM_Sans";
-    src: url("/wp-content/themes/tictradeinternational/assets/fonts/DM_Sans/DMSans-VariableFont_opszwght.ttf") format("truetype");
+    src: url("/assets/fonts/DM_Sans/DMSans-VariableFont_opszwght.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
