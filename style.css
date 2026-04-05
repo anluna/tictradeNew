@@ -184,6 +184,9 @@ ul {
     .slide-description {
         font-size: 1rem;
     }
+    .slide-tag {
+        font-size: 1rem;
+    }
 
     .slide-button {
         padding: 10px 20px;
