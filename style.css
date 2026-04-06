@@ -184,6 +184,7 @@ ul {
     .slide-description {
         font-size: 1rem;
     }
+
     .slide-tag {
         font-size: 1rem;
     }
@@ -232,11 +233,11 @@ ul {
 
 .metricas__titulo {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-size: 3rem;
     font-weight: 700;
     line-height: 1.2;
     text-align: center;
-    color: #1c1c1c;
+    color: #d9782b;
     margin: 0 0 12px;
 }
 
@@ -246,9 +247,8 @@ ul {
     font-weight: 400;
     line-height: 1.6;
     text-align: center;
-    color: #6b6b6b;
+    color: #1c1c1c;
     margin: 0 auto 56px;
-    max-width: 680px;
 }
 
 .metricas-grid {
@@ -645,10 +645,11 @@ ul {
 
 .cards__section .titulo__seccion {
     font-family: 'Syne', sans-serif;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 700;
     line-height: 120%;
     text-align: center;
+    color: #d9782b;
 }
 
 .cards__section .descripcion {
@@ -823,9 +824,10 @@ ul {
 
 .valores__section h2 {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-size: 3rem;
     font-weight: 800;
     margin: 0;
+    color: #d9782b;
 }
 
 .valores-grid {
@@ -1018,7 +1020,7 @@ ul {
 
 .titulo__seccion {
     font-family: 'Syne', sans-serif;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 800;
     color: #333;
     margin-bottom: 1rem;
@@ -1742,9 +1744,9 @@ ul {
 
 .texto__valores-title {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+    font-size: 3rem;
     font-weight: 800;
-    color: #1c1c1c;
+    color: #d9782b;
     letter-spacing: -.03em;
     line-height: 1.1;
     margin: 0 0 16px;
@@ -1754,7 +1756,7 @@ ul {
     font-family: 'DM Sans', sans-serif;
     font-size: 1.5rem;
     line-height: 1.7;
-    color: #2a2a2a;
+    color: #222222;
     margin: 0;
 }
 
@@ -1767,7 +1769,7 @@ ul {
 }
 
 .texto__valores-item {
-    background: #fff;
+    background: #1c1c1c;
     padding: 36px 28px;
     display: flex;
     flex-direction: column;
@@ -1776,6 +1778,27 @@ ul {
     position: relative;
     border: 2px solid #d9782b;
     border-radius: 16px;
+    align-items: center;
+    overflow: hidden;
+}
+
+.texto__valores-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url('./assets/img/TIC-WHITE.png');
+    background-repeat: repeat;
+    background-size: 160px auto;
+    background-position: center;
+    opacity: 0.1;
+    mix-blend-mode: screen;
+    pointer-events: none;
+}
+
+.texto__valores-item > * {
+    position: relative;
+    z-index: 1;
 }
 
 @keyframes slideInLeft {
@@ -1819,8 +1842,8 @@ ul {
 }
 
 .texto__valores-icon {
-    width: 52px;
-    height: 52px;
+    width: 100px;
+    height: 100px;
     border-radius: 13px;
     background: rgba(221, 117, 13, 0.1);
     display: flex;
@@ -1830,8 +1853,8 @@ ul {
 }
 
 .texto__valores-icon img {
-    width: 26px;
-    height: 26px;
+    width: 56px;
+    height: 56px;
     object-fit: contain;
     filter: brightness(0) saturate(100%) invert(55%) sepia(60%) saturate(500%) hue-rotate(345deg);
 }
@@ -1846,9 +1869,9 @@ ul {
 
 .texto__valores-name {
     font-family: 'Syne', sans-serif;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 700;
-    color: #222222;
+    color: #ffffff;
     letter-spacing: -.01em;
     line-height: 1.25;
     margin: 0;
@@ -1993,13 +2016,12 @@ ul {
 
 .mision__title {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-size: 3rem;
     font-weight: 800;
-    color: #1c1c1c;
+    color: #d9782b;
     letter-spacing: -.03em;
     line-height: 1.1;
     margin: 0;
-    max-width: 640px;
 }
 
 .mision__inner {
@@ -2330,7 +2352,7 @@ ul {
 
 .diferenciadores__title {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+    font-size: 3rem;
     font-weight: 800;
     color: #1c1c1c;
     letter-spacing: -.03em;
@@ -2891,9 +2913,9 @@ ul {
 
 .cards__imagen-title {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+    font-size: 3rem;
     font-weight: 800;
-    color: #1c1c1c;
+    color: #d9782b;
     letter-spacing: -.03em;
     line-height: 1.1;
     margin: 0;
@@ -3215,10 +3237,6 @@ ul {
         grid-template-columns: 1fr;
         gap: 14px;
     }
-
-    .cards__imagen-card {
-        height: 350px;
-    }
 }
 
 /* ════════════════════════════════ SECCIÓN PROCESO LOGÍSTICO ════════════════════════════════ */
@@ -3265,7 +3283,7 @@ ul {
 
 .proceso__title {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-size: 3rem;
     font-weight: 800;
     color: #d9782b;
     letter-spacing: -.03em;
@@ -3479,19 +3497,19 @@ ul {
 }
 
 .proceso__step:nth-child(1) {
-    transform: translate(-50%, -50%) rotate(0deg) translate(var(--radio)) rotate(0deg);
+    transform: translate(-190%, -170%) rotate(0deg) translate(var(--radio)) rotate(0deg);
 }
 
 .proceso__step:nth-child(2) {
-    transform: translate(-50%, -50%) rotate(72deg) translate(var(--radio)) rotate(-72deg);
+    transform: translate(90%, -145%) rotate(72deg) translate(var(--radio)) rotate(-72deg);
 }
 
 .proceso__step:nth-child(3) {
-    transform: translate(-50%, -50%) rotate(144deg) translate(var(--radio)) rotate(-144deg);
+    transform: translate(65%, 35%) rotate(144deg) translate(var(--radio)) rotate(-144deg);
 }
 
 .proceso__step:nth-child(4) {
-    transform: translate(-50%, -50%) rotate(216deg) translate(var(--radio)) rotate(-216deg);
+    transform: translate(-105%, 10%) rotate(216deg) translate(var(--radio)) rotate(-216deg);
 }
 
 .proceso__step:nth-child(6) {
@@ -3579,22 +3597,23 @@ ul {
 
     /* 1 */
     .proceso__step:nth-child(1) {
-        transform: translate(-50%, -50%) rotate(0deg) translate(var(--radio)) rotate(0deg);
+        transform: translate(-185%, -165%) rotate(0deg) translate(var(--radio)) rotate(0deg);
     }
 
     /* 2 */
     .proceso__step:nth-child(2) {
-        transform: translate(-50%, -50%) rotate(72deg) translate(var(--radio)) rotate(-72deg);
+        transform: translate(90%, -130%) rotate(72deg) translate(var(--radio)) rotate(-72deg);
     }
 
     /* 3 */
+   
     .proceso__step:nth-child(3) {
-        transform: translate(-50%, -50%) rotate(144deg) translate(var(--radio)) rotate(-144deg);
+        transform: translate(70%, 40%) rotate(144deg) translate(var(--radio)) rotate(-144deg);
     }
 
     /* 4 */
     .proceso__step:nth-child(4) {
-        transform: translate(-50%, -50%) rotate(216deg) translate(var(--radio)) rotate(-216deg);
+        transform: translate(-112%, 15%) rotate(216deg) translate(var(--radio)) rotate(-216deg);
     }
 
     /* 6 */
@@ -3640,20 +3659,20 @@ ul {
         height: 85px;
     }
 
+    .proceso__step:nth-child(1) {
+        transform: translate(-170%, -165%) rotate(0deg) translate(var(--radio)) rotate(0deg);
+    }
+
     .proceso__step:nth-child(2) {
-        transform: translate(-20%, 12%) rotate(72deg) translate(var(--radio)) rotate(-72deg);
+        transform: translate(127%, -100%) rotate(72deg) translate(var(--radio)) rotate(-72deg);
     }
 
     .proceso__step:nth-child(3) {
-        transform: translate(-145%, -20%) rotate(144deg) translate(var(--radio)) rotate(-144deg);
+        transform: translate(42%, 65%) rotate(144deg) translate(var(--radio)) rotate(-144deg);
     }
 
     .proceso__step:nth-child(4) {
-        transform: translate(-120%, -75%) rotate(216deg) translate(var(--radio)) rotate(-216deg);
-    }
-
-    .proceso__step:nth-child(1) {
-        transform: translate(41%, -65%) rotate(0deg) translate(var(--radio)) rotate(0deg);
+        transform: translate(-180%, 0%) rotate(216deg) translate(var(--radio)) rotate(-216deg);
     }
 
     .logo-second {
@@ -3684,6 +3703,9 @@ ul {
 
     .proceso__step {
         width: 100px;
+        align-items: center;
+        display: flex;
+        justify-content: flex-end;
     }
 
     .proceso__step-icon {
@@ -3696,20 +3718,32 @@ ul {
         height: 65px;
     }
 
+    .proceso__step:nth-child(1) {
+        transform: translate(-125%, -160%) rotate(0deg) translate(var(--radio)) rotate(0deg);
+    }
+
+
     .proceso__step:nth-child(2) {
-        transform: translate(-50%, -22%) rotate(72deg) translate(var(--radio)) rotate(-72deg);
+        transform: translate(10%, -110%) rotate(72deg) translate(var(--radio)) rotate(-72deg);
+        flex-direction: column;
     }
 
     .proceso__step:nth-child(3) {
-        transform: translate(-63%, -50%) rotate(144deg) translate(var(--radio)) rotate(-144deg);
+        transform: translate(-10%, -10%) rotate(144deg) translate(var(--radio)) rotate(-144deg);
+        flex-direction: row-reverse;
     }
 
     .proceso__step:nth-child(4) {
-        transform: translate(-50%, -65%) rotate(216deg) translate(var(--radio)) rotate(-216deg);
+        transform: translate(-50%, -15%) rotate(216deg) translate(var(--radio)) rotate(-216deg);
+        flex-direction: column-reverse;
     }
 
-    .proceso__step:nth-child(1) {
-        transform: translate(-40%, -65%) rotate(0deg) translate(var(--radio)) rotate(0deg);
+    .proceso__step--active {
+        flex-direction: column;
+    }
+
+    .proceso__step--active .proceso__step-visual{
+        padding: 5px;
     }
 
     .proceso__step--active .proceso__step-desc,
@@ -3771,9 +3805,9 @@ ul {
 
 .industrias__title {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+    font-size: 3rem;
     font-weight: 800;
-    color: #1c1c1c;
+    color: #d9782b;
     letter-spacing: -.03em;
     line-height: 1.1;
     margin: 0;
@@ -5111,6 +5145,7 @@ ul {
     overflow: hidden;
 }
 
+
 .puntos-trabajo__header {
     text-align: center;
     margin-bottom: 70px;
@@ -5127,9 +5162,9 @@ ul {
 }
 
 .puntos-trabajo__titulo {
-    font-size: clamp(32px, 5vw, 52px);
+    font-size: 3rem;
     font-weight: 800;
-    color: #1c1c1c;
+    color: #d9782b;
     line-height: 1.15;
     margin: 0;
     font-family: 'Syne', sans-serif;
@@ -5410,7 +5445,7 @@ ul {
 
 .valores__titulo {
     font-family: 'Syne', sans-serif;
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 700;
     line-height: 1.2;
     margin: 0;
@@ -5485,9 +5520,9 @@ ul {
 
 .cobertura__titulo {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(28px, 3.5vw, 48px);
+    font-size: 3rem;
     font-weight: 800;
-    color: #1c1c1c;
+    color: #d9782b;
     line-height: 1.15;
     margin: 0 0 20px;
 }
