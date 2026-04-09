@@ -4301,9 +4301,7 @@ ul {
         overflow: visible;
     }
 
-    .logos__card {
-        display: none;
-    }
+    
 }
 
 @media (max-width: 1024px) {
@@ -6349,7 +6347,7 @@ footer ul {
         display: none;
     }
 }
-
+valores__curva-wrap,
 fieldset {
     display:none;
 }
