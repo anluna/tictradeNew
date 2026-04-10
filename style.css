@@ -668,8 +668,7 @@ ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 30px;
-    /* Espacio arriba para que las imágenes que salen no se corten */
-    padding-top: 80px;
+    padding-top: 30px;
 }
 
 .card-item {
@@ -683,6 +682,12 @@ ul {
     align-items: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 2px solid #d9782b;
+}
+
+.background__white{
+    width: 100%;
+    height: 200px;
+    background: transparent;
 }
 
 /*.card__borde {
@@ -700,7 +705,6 @@ ul {
 .card-img-zone {
     width: 100%;
     background: #1c1c1c;
-    border-radius: 18px 18px 0 0;
     height: 200px;
     position: relative;
     overflow: visible;
@@ -711,7 +715,7 @@ ul {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    height: 320px;
+    height: 350px;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 -8px 20px rgba(0, 0, 0, 0.3));
@@ -865,15 +869,13 @@ ul {
 /* ════════════════════════════════SECCIÓN ════════════════════════════════ */
 
 .valores__section {
-    padding: 120px 0 120px;
+    padding: 120px 0 220px;
     background-color: #ffffff;
     position: relative;
-    overflow: hidden;
 }
 
 .valores__section .section-header {
     text-align: center;
-    margin: 0 auto 100px;
 }
 
 .valores__section h2 {
@@ -894,20 +896,23 @@ ul {
 }
 
 .valor-item--pos-0 {
-    margin-top: 120px;
+    margin-top: 259px;
+    transform: translate(133px, 10px);
 }
 
 .valor-item--pos-1 {
-    margin-top: 320px;
+    margin-top: 340px;
+    transform: translate(13px, 220px);
 }
 
 .valor-item--pos-2 {
-    margin-top: -35px;
+    margin-top: 0px;
+    transform: translate(-130px, 10px);
 }
 
 .valor-img-wrap {
     width: 100%;
-    max-width: 100%;
+    max-width: 300px;
     margin: 0 auto;
     border-radius: 20px;
     overflow: hidden;
@@ -964,21 +969,28 @@ ul {
 }
 
 .valores__curva-wrap {
-    grid-column: 1 / -1;
-    grid-row: 1;
-    position: relative;
-    height: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 70%;
     z-index: 0;
+    pointer-events: none;
+    top: 228px;
+    opacity: 0.1;
+    transform: translate(-50%, -24px);
 }
 
 .valores__curva-svg {
-    position: absolute;
-    top: 0;
-    left: -40px;
-    width: calc(100% + 80px);
-    height: 420px;
-    overflow: visible;
-    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    display: block;
+    fill: #d9782b;
+}
+
+.valor-item {
+    position: relative;
+    z-index: 2;
 }
 
 @media (max-width: 1024px) {
@@ -1927,11 +1939,11 @@ ul {
 }
 
 .texto__valores-icon img {
-    width: 35px;
-    height: 35px;
+    width: 150px;
+    height: 150px;
     object-fit: contain;
-    
-     filter: brightness(0) invert(1);
+
+    filter: brightness(0) invert(1);
 }
 
 .texto__valores-num {
@@ -3540,8 +3552,15 @@ ul {
 }
 
 @keyframes hint-bounce {
-    0%, 100% { transform: translateX(0); }
-    50%       { transform: translateX(5px); }
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
 }
 
 .proceso__featured-icon-wrap {
@@ -3770,40 +3789,87 @@ ul {
 }
 
 @keyframes proceso-float {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-8px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
 }
 
 @keyframes proceso-ring {
-    0%   { opacity: .65; transform: translate(-50%, -50%) scale(.85); }
-    70%  { opacity: .12; transform: translate(-50%, -50%) scale(1.22); }
-    100% { opacity: 0;   transform: translate(-50%, -50%) scale(1.42); }
+    0% {
+        opacity: .65;
+        transform: translate(-50%, -50%) scale(.85);
+    }
+
+    70% {
+        opacity: .12;
+        transform: translate(-50%, -50%) scale(1.22);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.42);
+    }
 }
 
 @keyframes tag-shimmer {
-    0%   { left: -100%; }
-    60%  { left: 120%; }
-    100% { left: 120%; }
+    0% {
+        left: -100%;
+    }
+
+    60% {
+        left: 120%;
+    }
+
+    100% {
+        left: 120%;
+    }
 }
 
 @media (max-width: 1024px) {
-    .proceso__title { font-size: 2.4rem; }
-    .proceso__featured { padding: 44px 36px; }
-    .proceso__featured-title { font-size: 1.5rem; }
+    .proceso__title {
+        font-size: 2.4rem;
+    }
+
+    .proceso__featured {
+        padding: 44px 36px;
+    }
+
+    .proceso__featured-title {
+        font-size: 1.5rem;
+    }
 }
 
 @media (max-width: 768px) {
-    .proceso__logistico { padding: 72px 0; }
-    .proceso__title { font-size: 2rem; }
+    .proceso__logistico {
+        padding: 72px 0;
+    }
+
+    .proceso__title {
+        font-size: 2rem;
+    }
 
     .proceso__grid,
     .proceso__grid.is-expanded {
         grid-template-columns: 1fr;
     }
 
-    .proceso__featured { padding: 36px 28px; }
-    .proceso__featured-title { font-size: 1.4rem; }
-    .proceso__header { margin-bottom: 48px; }
+    .proceso__featured {
+        padding: 36px 28px;
+    }
+
+    .proceso__featured-title {
+        font-size: 1.4rem;
+    }
+
+    .proceso__header {
+        margin-bottom: 48px;
+    }
 
     .proceso__grid.is-expanded .proceso__cards {
         opacity: 1;
@@ -3812,23 +3878,67 @@ ul {
 }
 
 @media (max-width: 480px) {
-    .proceso__logistico { padding: 56px 0; }
-    .proceso__title { font-size: 1.75rem; }
-    .proceso__featured { padding: 28px 22px; gap: 24px; }
+    .proceso__logistico {
+        padding: 56px 0;
+    }
 
-    .proceso__featured-icon-wrap { width: 74px; height: 74px; }
-    .proceso__grid:not(.is-expanded) .proceso__featured-icon-wrap { width: 96px; height: 96px; }
+    .proceso__title {
+        font-size: 1.75rem;
+    }
 
-    .proceso__featured-icon-wrap::before { width: 96px; height: 96px; }
-    .proceso__featured-icon-wrap::after  { width: 122px; height: 122px; }
-    .proceso__featured-img { width: 36px; height: 36px; }
-    .proceso__grid:not(.is-expanded) .proceso__featured-img { width: 48px; height: 48px; }
+    .proceso__featured {
+        padding: 28px 22px;
+        gap: 24px;
+    }
 
-    .proceso__featured-title { font-size: 1.25rem; }
+    .proceso__featured-icon-wrap {
+        width: 74px;
+        height: 74px;
+    }
 
-    .proceso__card { padding: 16px 18px; gap: 14px; }
-    .proceso__card-icon { width: 48px; height: 48px; }
-    .proceso__card-img  { width: 24px; height: 24px; }
+    .proceso__grid:not(.is-expanded) .proceso__featured-icon-wrap {
+        width: 96px;
+        height: 96px;
+    }
+
+    .proceso__featured-icon-wrap::before {
+        width: 96px;
+        height: 96px;
+    }
+
+    .proceso__featured-icon-wrap::after {
+        width: 122px;
+        height: 122px;
+    }
+
+    .proceso__featured-img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .proceso__grid:not(.is-expanded) .proceso__featured-img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .proceso__featured-title {
+        font-size: 1.25rem;
+    }
+
+    .proceso__card {
+        padding: 16px 18px;
+        gap: 14px;
+    }
+
+    .proceso__card-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .proceso__card-img {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 /* ============================================ SECCIÓN: INDUSTRIAS ============================================ */
@@ -4237,6 +4347,7 @@ ul {
         background: #ffffff;
         border: 1px solid #ede7d4;
         padding: 32px 28px;
+        transform: none !important;
     }
 
     .industrias__item-back::before {
@@ -4301,7 +4412,20 @@ ul {
         overflow: visible;
     }
 
-    
+    .logos__card {
+        display: none;
+    }
+
+    .industrias__item--flip:hover .industrias__item-front,
+    .industrias__item--flip:hover .industrias__item-back {
+        transform: none !important;
+    }
+
+    .industrias__item-front,
+    .industrias__item-back {
+        opacity: 1;
+        visibility: visible;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -4452,11 +4576,9 @@ ul {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        to bottom,
-        transparent 40%,
-        rgba(28, 28, 28, .72) 100%
-    );
+    background: linear-gradient(to bottom,
+            transparent 40%,
+            rgba(28, 28, 28, .72) 100%);
     z-index: 1;
 }
 
@@ -4521,7 +4643,7 @@ ul {
 .ubicaciones__card-flip-hint svg {
     width: 16px;
     height: 16px;
-    stroke: rgba(255,255,255,.8);
+    stroke: rgba(255, 255, 255, .8);
     fill: none;
     stroke-width: 1.8;
     stroke-linecap: round;
@@ -4529,8 +4651,15 @@ ul {
 }
 
 @keyframes hint-pulse {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: .45; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .45;
+    }
 }
 
 .ubicaciones__card-front-footer::before {
@@ -4552,8 +4681,8 @@ ul {
     padding: 36px 32px 32px;
 
     background-image:
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,.12) 0%, transparent 50%),
-        radial-gradient(circle at 20% 80%, rgba(0,0,0,.08) 0%, transparent 45%);
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, .12) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(0, 0, 0, .08) 0%, transparent 45%);
 }
 
 .ubicaciones__card-back-num {
@@ -4562,7 +4691,7 @@ ul {
     font-weight: 800;
     letter-spacing: .14em;
     text-transform: uppercase;
-    color: rgba(255,255,255,.6);
+    color: rgba(255, 255, 255, .6);
     display: block;
     margin-bottom: 10px;
 }
@@ -4582,7 +4711,7 @@ ul {
     display: block;
     width: 32px;
     height: 3px;
-    background: rgba(255,255,255,.5);
+    background: rgba(255, 255, 255, .5);
     border-radius: 2px;
     margin-top: 14px;
 }
@@ -4597,7 +4726,7 @@ ul {
     font-family: 'DM Sans', sans-serif;
     font-size: .9rem;
     line-height: 1.75;
-    color: rgba(255,255,255,.88);
+    color: rgba(255, 255, 255, .88);
     margin: 0 0 12px;
 }
 
@@ -4612,7 +4741,7 @@ ul {
     font-family: 'Syne', sans-serif;
     font-size: 7rem;
     font-weight: 900;
-    color: rgba(255,255,255,.07);
+    color: rgba(255, 255, 255, .07);
     line-height: 1;
     pointer-events: none;
     user-select: none;
@@ -4628,23 +4757,49 @@ ul {
 }
 
 .ubicaciones__section--dark .ubicaciones__subtitle {
-    color: rgba(255,255,255,.45);
+    color: rgba(255, 255, 255, .45);
 }
 
 @media (max-width: 1024px) {
-    .ubicaciones__section { padding: 72px 0; }
-    .ubicaciones__list { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .ubicaciones__card { height: 420px; }
+    .ubicaciones__section {
+        padding: 72px 0;
+    }
+
+    .ubicaciones__list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .ubicaciones__card {
+        height: 420px;
+    }
 }
 
 @media (max-width: 640px) {
-    .ubicaciones__section { padding: 56px 0; }
-    .ubicaciones__list { grid-template-columns: 1fr; gap: 20px; }
-    .ubicaciones__card { height: 400px; }
-    .ubicaciones__header { margin-bottom: 48px; }
+    .ubicaciones__section {
+        padding: 56px 0;
+    }
 
-    .ubicaciones__card-back { padding: 28px 24px 24px; }
-    .ubicaciones__card-back-title { font-size: 1.2rem; }
+    .ubicaciones__list {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .ubicaciones__card {
+        height: 400px;
+    }
+
+    .ubicaciones__header {
+        margin-bottom: 48px;
+    }
+
+    .ubicaciones__card-back {
+        padding: 28px 24px 24px;
+    }
+
+    .ubicaciones__card-back-title {
+        font-size: 1.2rem;
+    }
 }
 
 /* ── Sección Mapa ── */
@@ -5349,20 +5504,15 @@ ul {
     align-items: start;
 }
 
-.puntos-trabajo__grid::before {
-    content: '';
+.puntos-trabajo__linea-svg {
     position: absolute;
-    top: 75px;
-    left: 12%;
-    right: 12%;
-    height: 2px;
-    background-image: repeating-linear-gradient(to right,
-            #ccc 0px,
-            #ccc 8px,
-            transparent 8px,
-            transparent 18px);
-    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
     pointer-events: none;
+    z-index: 0;
 }
 
 .puntos-trabajo__item {
@@ -6347,7 +6497,6 @@ footer ul {
         display: none;
     }
 }
-valores__curva-wrap,
 fieldset {
     display:none;
 }
