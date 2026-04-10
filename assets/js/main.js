@@ -233,11 +233,16 @@ document.addEventListener('DOMContentLoaded', function () {
     var trainSeriesNacional = chartNacional.series.push(am5map.MapPointSeries.new(rootNacional, {}));
 
     // SVG del Trailer
-    var trainSVG = "M105.01,40.54c-5.7,0-10.3,4.63-10.3,10.3c0,5.7,4.63,10.3,10.3,10.3c5.7,0,10.3-4.63,10.3-10.3 C115.31,45.14,110.68,40.54,105.01,40.54L105.01,40.54z M61.86,41.46c-5.2,0-9.38,4.22-9.38,9.38c0,5.2,4.22,9.38,9.38,9.38 c5.2,0,9.38-4.22,9.38-9.38C71.24,45.64,67.02,41.46,61.86,41.46L61.86,41.46z M61.86,47.23c-1.99,0-3.61,1.62-3.61,3.61 s1.62,3.61,3.61,3.61c1.99,0,3.61-1.62,3.61-3.61S63.85,47.23,61.86,47.23L61.86,47.23z M24.11,41.46c-5.2,0-9.38,4.22-9.38,9.38 c0,5.2,4.22,9.38,9.38,9.38c5.2,0,9.38-4.22,9.38-9.38C33.5,45.64,29.28,41.46,24.11,41.46L24.11,41.46z M24.11,47.23 c-1.99,0-3.61,1.62-3.61,3.61s1.62,3.61,3.61,3.61c1.99,0,3.61-1.62,3.61-3.61S26.11,47.23,24.11,47.23L24.11,47.23z M47.37,53.53 H38.1v-3.01h9.27V53.53L47.37,53.53z M10.46,53.53H5.63c-1.55,0-2.95-0.66-3.96-1.71c-1.01-1.05-1.65-2.5-1.65-4.02V8.06 c0-2.44-0.36-4.44,1.62-6.42C2.66,0.63,4.05,0,5.6,0h73.32c1.55,0,2.95,0.63,3.96,1.65c1.01,1.01,1.65,2.41,1.65,3.96l0,7.26 l10.27,0.07l3.62,0.02l0,0c0.73,0.79,1.4,1.6,2.01,2.42c2.71,3.64,4.23,7.94,4.52,12.11l16.38,6.27l1.55,16.51h-5.01 c-2.31-18.03-25.03-15.84-25.73,0l-7.61,0v1.74c0,0.86-0.67,1.52-1.52,1.52l-6.69,0v-3.04h5.16V5.61c0-0.7-0.28-1.33-0.76-1.81 c-0.48-0.48-1.11-0.76-1.81-0.76H5.6c-0.7,0-1.33,0.29-1.81,0.76C2.76,4.77,3.07,6.43,3.07,7.7v40.1c0,0.73,0.32,1.43,0.79,1.93 c0.48,0.48,1.08,0.79,1.77,0.79h4.82V53.53L10.46,53.53z M94.46,17.89l-5.83-0.09v9.69h11.02C99.12,23.98,97.49,20.9,94.46,17.89 L94.46,17.89z M105.01,46.88c-2.19,0-3.96,1.77-3.96,3.96c0,2.19,1.77,3.96,3.96,3.96c2.19,0,3.96-1.77,3.96-3.96 C108.97,48.65,107.2,46.88,105.01,46.88L105.01,46.88z";
-
+    var trainSVG = `
+M43.297,157.656L6.109,262.219C2.406,271.031,0,285.313,0,292.109s0,41.234,0,41.234c0,11.188,9.156,20.375,20.375,20.375h24.391C47.219,379,68.516,398.75,94.438,398.75s47.234-19.75,49.688-45.031h45.109V139.75H73.391C62.188,139.75,48.641,147.813,43.297,157.656z
+M94.438,373.781c-13.781,0-24.969-11.188-24.969-24.969s11.188-24.938,24.969-24.938c13.797,0,24.969,11.156,24.969,24.938S108.234,373.781,94.438,373.781z
+M165.797,166.313v79.516H46.875l23.375-71.609c2.047-3.781,9-7.906,13.281-7.906H165.797z
+M217.797,113.25v240.469h147.109c2.422,25.281,23.734,45.031,49.656,45.031c25.938,0,47.219-19.75,49.703-45.031H512V113.25H217.797z
+M414.563,373.781c-13.781,0-24.969-11.188-24.969-24.969s11.188-24.938,24.969-24.938c13.797,0,24.969,11.156,24.969,24.938S428.359,373.781,414.563,373.781z
+`;
     var train = am5.Graphics.new(rootNacional, {
         svgPath: trainSVG,
-        scale: 0.3,
+        scale: 0.1,
         centerY: am5.p50,
         centerX: am5.p50,
         fill: am5.color(0xd9782b),
@@ -270,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function () {
     trainDataItemNacional.dataContext = { prevPosition: 0 };
     trainDataItemNacional.on("positionOnLine", (value) => {
         if (trainDataItemNacional.dataContext.prevPosition < value) {
-            train.set("rotation", 0);
+            train.set("rotation", 180);
         } else if (trainDataItemNacional.dataContext.prevPosition > value) {
             train.set("rotation", -180);
         }
@@ -388,18 +393,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Ruta para el BARCO
     var puntosBarco = [
         { latitude: 34.0479, longitude: 100.6197 },
-        { latitude: 20.0, longitude: 80.0 },
-        { latitude: 15.0, longitude: 60.0 },
-        { latitude: 12.0, longitude: 45.0 },
-        { latitude: 15.0, longitude: 35.0 },
-        { latitude: 20.0, longitude: 30.0 },
         { latitude: 35.0, longitude: 25.0 },
-        { latitude: 40.0, longitude: 15.0 },
-        { latitude: 38.0, longitude: -10.0 },
-        { latitude: 35.0, longitude: -25.0 },
-        { latitude: 30.0, longitude: -40.0 },
-        { latitude: 25.0, longitude: -55.0 },
-        { latitude: 30.0, longitude: -70.0 },
         { latitude: 40.0, longitude: -95.0 }
     ];
 
@@ -444,7 +438,7 @@ document.addEventListener('DOMContentLoaded', function () {
     planeDataItem.animate({
         key: "positionOnLine",
         to: 1,
-        duration: 8000,
+        duration: 10000,
         loops: Infinity,
         easing: am5.ease.linear
     });
@@ -465,11 +459,15 @@ document.addEventListener('DOMContentLoaded', function () {
     var boatSeries = chartInternacional.series.push(am5map.MapPointSeries.new(rootInternacional, {}));
 
     // SVG BARCO 
-    var boatSVG = "M0,40 L10,20 L30,15 L50,15 L70,20 L80,40 L70,45 L10,45 Z M15,45 L15,55 L65,55 L65,45 M20,55 L20,60 L60,60 L60,55";
-
+    var boatSVG = `
+        M7.796,238.365l14.356,52.705c0,15.872,12.877,28.73,28.76,28.73h217.976c15.908,0,28.736-12.859,28.736-28.73l14.38-52.705H7.796z
+        M152.713,14.374v200.039h7.178c3.974,0,7.19-6.444,7.19-14.368V0h-7.19C155.941,0,152.713,6.45,152.713,14.374z
+        M58.096,207.229h81.448V53.899l-88.22,141.134C47.105,201.764,50.149,207.229,58.096,207.229z
+        M183.681,207.229h70.66c7.936,0,10.185-4.875,5.012-10.901L183.681,108.4V207.229z
+        `;
     var boat = am5.Graphics.new(rootInternacional, {
         svgPath: boatSVG,
-        scale: 0.4,
+        scale: 0.1,
         centerY: am5.p50,
         centerX: am5.p50,
         fill: am5.color(0x1c1c1c),
@@ -492,7 +490,7 @@ document.addEventListener('DOMContentLoaded', function () {
     boatDataItem.animate({
         key: "positionOnLine",
         to: 1,
-        duration: 25000,
+        duration: 20000,
         loops: Infinity,
         easing: am5.ease.linear
     });
@@ -500,7 +498,7 @@ document.addEventListener('DOMContentLoaded', function () {
     boatDataItem.dataContext = { prevPosition: 0 };
     boatDataItem.on("positionOnLine", (value) => {
         if (boatDataItem.dataContext.prevPosition < value) {
-            boat.set("rotation", 0);
+            boat.set("rotation", 180);
         } else if (boatDataItem.dataContext.prevPosition > value) {
             boat.set("rotation", -180);
         }
