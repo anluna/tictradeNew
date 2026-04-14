@@ -112,12 +112,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* Mapas */
 
-    // MAPA NACIONAL - México y Estados Unidos con TREN (Ruta extendida)
-    var rootNacional = am5.Root.new("mapaRegional");
+    // Verificar que los elementos del mapa existen antes de crear los mapas
+    const mapaRegionalElement = document.getElementById("mapaRegional");
+    const chartdivElement = document.getElementById("chartdiv");
 
-    rootNacional.setThemes([
-        am5themes_Animated.new(rootNacional)
-    ]);
+    if (!mapaRegionalElement && !chartdivElement) {
+        console.warn("Elementos de mapas no encontrados. No se cargarán los mapas.");
+        return;
+    }
+
+    // MAPA NACIONAL - México y Estados Unidos con TREN (Ruta extendida)
+    if (!mapaRegionalElement) {
+        console.warn("Elemento 'mapaRegional' no encontrado. Se omitirá el mapa nacional.");
+    } else {
+        var rootNacional = am5.Root.new("mapaRegional");
+
+        rootNacional.setThemes([
+            am5themes_Animated.new(rootNacional)
+        ]);
 
     var chartNacional = rootNacional.container.children.push(am5map.MapChart.new(rootNacional, {
         panX: "none",
@@ -294,9 +306,13 @@ M414.563,373.781c-13.781,0-24.969-11.188-24.969-24.969s11.188-24.938,24.969-24.9
     }, 500);
 
     chartNacional.appear(1000, 100);
+    }
 
     // MAPA INTERNACIONAL 
-    var rootInternacional = am5.Root.new("chartdiv");
+    if (!chartdivElement) {
+        console.warn("Elemento 'chartdiv' no encontrado. Se omitirá el mapa internacional.");
+    } else {
+        var rootInternacional = am5.Root.new("chartdiv");
 
     rootInternacional.setThemes([
         am5themes_Animated.new(rootInternacional)
@@ -514,5 +530,6 @@ M414.563,373.781c-13.781,0-24.969-11.188-24.969-24.969s11.188-24.938,24.969-24.9
     }, 500);
 
     chartInternacional.appear(1000, 100);
+    }
 
 });
