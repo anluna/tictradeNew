@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
             pinchZoom: false,
             projection: am5map.geoMercator(),
             swipeVelocityThreshold: 0,
-            tapToActivate: false
+            tapToActivate: true
         }));
 
         // Fondo
