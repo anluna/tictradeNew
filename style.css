@@ -6008,3 +6008,7 @@ footer ul {
 .footer-heading:hover{
     color: #da741c !important;
 }
+
+fieldset{
+    display: none !important;
+}
