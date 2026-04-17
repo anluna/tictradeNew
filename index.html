@@ -1041,8 +1041,6 @@
     </section>
     <section class="texto__valores">
         <div class="container">
-
-            <!-- Encabezado -->
             <div class="texto__valores-header">
 
                 <h2 class="texto__valores-title">No somos un proveedor, somos un socio estratégico</h2>
@@ -1053,13 +1051,13 @@
 
             <!-- Grid de valores -->
             <div class="texto__valores-grid">
-                <div class="texto__valores-item slide-in-left">
+                <div class="texto__valores-item slide-in-left animate">
                     <div class="texto__valores-icon">
                         <img src="/img/04/assetLight-Photoroom.png"
                             alt="Modelo  &lt;br&gt; Asset-Light" loading="lazy">
                     </div>
                     <div class="space__card">
-                        <img src="/assets/img/logo-tic-completo.png"
+                        <img src="/assets/img/logotic-black.png"
                             alt="Logo Tictrade international">
                     </div>
                     <div class="titulo__card">
@@ -1067,13 +1065,13 @@
                     </div>
 
                 </div>
-                <div class="texto__valores-item slide-in-right">
+                <div class="texto__valores-item slide-in-right animate">
                     <div class="texto__valores-icon">
                         <img src="/img/04/torreControl-Photoroom.png"
                             alt="Torre  &lt;br&gt; de Control" loading="lazy">
                     </div>
                     <div class="space__card">
-                        <img src="/assets/img/logo-tic-completo.png"
+                        <img src="/assets/img/logotic-black.png"
                             alt="Logo Tictrade international">
                     </div>
                     <div class="titulo__card">
@@ -1081,13 +1079,13 @@
                     </div>
 
                 </div>
-                <div class="texto__valores-item slide-in-left">
+                <div class="texto__valores-item slide-in-left animate">
                     <div class="texto__valores-icon">
                         <img src="/img/04/endtoend-Photoroom.png"
                             alt="Integración E2E" loading="lazy">
                     </div>
                     <div class="space__card">
-                        <img src="/assets/img/logo-tic-completo.png"
+                        <img src="/assets/img/logotic-black.png"
                             alt="Logo Tictrade international">
                     </div>
                     <div class="titulo__card">
@@ -1121,48 +1119,99 @@
             }
         });
     </script>
-    <section class="banner__integral" id="banner-integral">
-        <div class="banner__integral__bg"
-            style="--banner-bg-image: url('/img/04/banner-tic.png');">
+    <section class="ban-integral is-animated" data-animate="ban-integral">
+        <div class="ban-float ban-float--tl">
+            <img src="/assets/img/airplane.svg"
+                alt="">
+        </div>
+        <div class="ban-float ban-float--tr">
+            <img src="/assets/img/warehouse.svg"
+                alt="">
+        </div>
+        <div class="ban-float ban-float--bl">
+            <img src="/assets/img/cargo.svg"
+                alt="">
+        </div>
+        <div class="ban-float ban-float--br">
+            <img src="/assets/img/fast-delivery.svg"
+                alt="">
         </div>
 
-        <div class="banner__integral__content">
-            <h2 class="banner__integral__titulo">
-                Una solución integral, de principio a fin </h2>
+        <div class="ban-integral__inner">
+
+            <h2 class="ban-integral__titulo">
+                <span class="ban-line" style="--i:0">
+                    Una solución integral, de principio a fin </span>
+            </h2>
+
+
+            <a class="ban-integral__btn" href="https://localhost/tic-tradeinternational/servicios/#diferenciador"
+                data-anchor="#diferenciador" data-base-url="https://localhost/tic-tradeinternational/servicios/">
+                Conoce más </a>
 
         </div>
     </section>
     <script>
-        const SERVICIOS_URL = "/servicios.html/#diferenciador";
-        document.addEventListener('DOMContentLoaded', function () {
-            const banner = document.getElementById('banner-integral');
-            const bg = banner ? banner.querySelector('.banner__integral__bg') : null;
-            if (!banner || !bg) return;
+        (function () {
+            'use strict';
 
-            const isMobile = () => window.innerWidth <= 768;
-            const speed = 0.35;
-            let redirected = false;
+            function initBanner() {
+                var banner = document.querySelector('[data-animate="ban-integral"]');
+                if (!banner) return;
+                var observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (!entry.isIntersecting) return;
+                        banner.classList.add('is-animated');
+                        observer.unobserve(banner);
+                    });
+                }, { threshold: 0.2 });
 
-            function onScroll() {
-                const rect = banner.getBoundingClientRect();
-                if (!isMobile() && !redirected && rect.bottom <= 0) {
-                    redirected = true;
-                    window.location.href = SERVICIOS_URL;
-                    return;
+                observer.observe(banner);
+                var btn = banner.querySelector('.ban-integral__btn');
+                if (!btn) return;
+
+                var anchor = btn.getAttribute('data-anchor');
+                var baseUrl = btn.getAttribute('data-base-url');
+
+                if (!anchor) return;
+
+                function getAnchorId() {
+                    return anchor.replace('#', '');
                 }
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    if (!isMobile()) {
-                        const offset = (window.innerHeight / 2 - rect.top - rect.height / 2) * speed;
-                        bg.style.transform = `translateY(${offset}px)`;
+
+                function isSamePage() {
+                    var curr = (window.location.origin + window.location.pathname).replace(/\/$/, '');
+                    var tgt = (baseUrl || '').replace(/\/$/, '');
+                    return curr === tgt;
+                }
+
+                function doScroll() {
+                    var el = document.getElementById(getAnchorId());
+                    if (el) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        history.pushState(null, '', anchor);
                     } else {
-                        bg.style.transform = 'translateY(0)';
+                        window.location.href = (baseUrl || '') + anchor;
                     }
                 }
+
+                btn.addEventListener('mouseenter', function () {
+                    if (isSamePage()) {
+                        doScroll();
+                    } else {
+                        window.location.href = (baseUrl || '') + anchor;
+                    }
+                });
+
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    doScroll();
+                });
             }
 
-            window.addEventListener('scroll', onScroll, { passive: true });
-            onScroll(); // ejecutar al cargar por si ya está en viewport
-        });
+            document.addEventListener('DOMContentLoaded', initBanner);
+
+        })();
     </script>
     <section class="puntos-trabajo">
         <div class="container">
