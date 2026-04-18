@@ -297,7 +297,7 @@ M414.563,373.781c-13.781,0-24.969-11.188-24.969-24.969s11.188-24.938,24.969-24.9
         setTimeout(() => {
             chartNacional.zoomToGeoPoint(
                 { latitude: 32, longitude: -100 },
-                6,
+                8,
                 1000
             );
         }, 500);
@@ -524,7 +524,7 @@ M414.563,373.781c-13.781,0-24.969-11.188-24.969-24.969s11.188-24.938,24.969-24.9
             setTimeout(() => {
                 chartInternacional.zoomToGeoPoint(
                     { latitude: 35, longitude: 10 },
-                    1.5,
+                    1.8,
                     2000
                 );
             }, 500);
