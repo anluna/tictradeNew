@@ -979,7 +979,6 @@
                             alt="Freight Forwarding" loading="lazy">
                     </div>
 
-                    <!-- Cuerpo -->
                     <div class="card__borde">
                         <div class="card-body">
                             <h3 class="card-title">Freight Forwarding</h3>
@@ -989,7 +988,8 @@
                         </div>
 
                         <div class="card-cta-wrap">
-                            <a class="card-cta" href="/servicios.html" target="">
+                            <a class="card-cta"
+                                href="/servicios.html/#describe_services" target="">
                                 Ver más </a>
                         </div>
                     </div>
@@ -1001,7 +1001,6 @@
                             alt="Road Transport" loading="lazy">
                     </div>
 
-                    <!-- Cuerpo -->
                     <div class="card__borde">
                         <div class="card-body">
                             <h3 class="card-title">Road Transport</h3>
@@ -1010,7 +1009,8 @@
                         </div>
 
                         <div class="card-cta-wrap">
-                            <a class="card-cta" href="/servicios.html" target="">
+                            <a class="card-cta"
+                                href="https://localhost/tic-tradeinternational/servicios/#describe_services" target="">
                                 Ver más </a>
                         </div>
                     </div>
@@ -1022,7 +1022,6 @@
                             alt="Contract Logistics" loading="lazy">
                     </div>
 
-                    <!-- Cuerpo -->
                     <div class="card__borde">
                         <div class="card-body">
                             <h3 class="card-title">Contract Logistics</h3>
@@ -1031,7 +1030,8 @@
                         </div>
 
                         <div class="card-cta-wrap">
-                            <a class="card-cta" href="/servicios.html" target="">
+                            <a class="card-cta"
+                                href="https://localhost/tic-tradeinternational/servicios/#describe_services" target="">
                                 Ver más </a>
                         </div>
                     </div>
@@ -1039,8 +1039,44 @@
             </div>
         </div>
     </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.location.hash) {
+                const hash = window.location.hash;
+                window.addEventListener('load', function () {
+                    setTimeout(function () {
+                        const target = document.querySelector(hash);
+                        if (target) {
+                            const offset = 100;
+                            const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                            window.scrollTo({ top: top, behavior: 'smooth' });
+                        }
+                    }, 400);
+                });
+            }
+            document.querySelectorAll('a[href*="#"]').forEach(function (anchor) {
+                anchor.addEventListener('click', function (e) {
+                    const url = new URL(this.href);
+                    const hash = url.hash;
+
+                    if (hash && url.pathname === window.location.pathname) {
+                        const target = document.querySelector(hash);
+                        if (target) {
+                            e.preventDefault();
+                            const offset = 100;
+                            const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                            window.scrollTo({ top: top, behavior: 'smooth' });
+                            history.pushState(null, null, hash);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
     <section class="texto__valores">
         <div class="container">
+
+            <!-- Encabezado -->
             <div class="texto__valores-header">
 
                 <h2 class="texto__valores-title">No somos un proveedor, somos un socio estratégico</h2>
@@ -1119,74 +1155,51 @@
             }
         });
     </script>
-    <section class="ban-integral is-animated" data-animate="ban-integral">
-        <div class="ban-float ban-float--tl">
-            <img src="/assets/img/airplane.svg"
-                alt="">
-        </div>
-        <div class="ban-float ban-float--tr">
-            <img src="/assets/img/warehouse.svg"
-                alt="">
-        </div>
-        <div class="ban-float ban-float--bl">
-            <img src="/assets/img/cargo.svg"
-                alt="">
-        </div>
-        <div class="ban-float ban-float--br">
-            <img src="/assets/img/fast-delivery.svg"
-                alt="">
-        </div>
-
-        <div class="ban-integral__inner">
-
-            <h2 class="ban-integral__titulo">
-                <span class="ban-line" style="--i:0">
-                    Una solución integral, de principio a fin </span>
-            </h2>
-
-
-            <a class="ban-integral__btn" href="/servicios.html/#diferenciador"
-                data-anchor="#diferenciador" data-base-url="/servicios.html">
-                Conoce más </a>
-
+    <section class="bic is-animated" data-animate="bic">
+        <h2 class="bic__titulo">
+            <span class="bic__line" style="--i:0">
+                Una solución integral, de principio a fin </span>
+        </h2>
+        <div class="container">
+            <div class="bic__card">
+                <a class="bic__icon-link" href="https://localhost/tic-tradeinternational/servicios/#diferenciador"
+                    data-anchor="#diferenciador" data-base-url="https://localhost/tic-tradeinternational/servicios/"
+                    aria-label="Ir a la sección">
+                    <span class="bic__pulse-ring"></span>
+                    <img class="bic__icon"
+                        src="/img/04/centro-de-control.png"
+                        alt="">
+                    <span class="bic__tooltip">Ver más</span>
+                </a>
+            </div>
         </div>
     </section>
     <script>
         (function () {
             'use strict';
-
-            function initBanner() {
-                var banner = document.querySelector('[data-animate="ban-integral"]');
-                if (!banner) return;
+            function initBIC() {
+                var section = document.querySelector('[data-animate="bic"]');
+                if (!section) return;
                 var observer = new IntersectionObserver(function (entries) {
                     entries.forEach(function (entry) {
                         if (!entry.isIntersecting) return;
-                        banner.classList.add('is-animated');
-                        observer.unobserve(banner);
+                        section.classList.add('is-animated');
+                        observer.unobserve(section);
                     });
-                }, { threshold: 0.2 });
-
-                observer.observe(banner);
-                var btn = banner.querySelector('.ban-integral__btn');
-                if (!btn) return;
-
-                var anchor = btn.getAttribute('data-anchor');
-                var baseUrl = btn.getAttribute('data-base-url');
-
-                if (!anchor) return;
-
-                function getAnchorId() {
-                    return anchor.replace('#', '');
-                }
-
+                }, { threshold: 0.15 });
+                observer.observe(section);
+                var link = section.querySelector('.bic__icon-link');
+                if (!link) return;
+                var anchor = link.getAttribute('data-anchor') || '';
+                var baseUrl = link.getAttribute('data-base-url') || '';
                 function isSamePage() {
+                    if (!baseUrl) return true;
                     var curr = (window.location.origin + window.location.pathname).replace(/\/$/, '');
-                    var tgt = (baseUrl || '').replace(/\/$/, '');
-                    return curr === tgt;
+                    return curr === baseUrl.replace(/\/$/, '');
                 }
-
                 function doScroll() {
-                    var el = document.getElementById(getAnchorId());
+                    var id = anchor.replace('#', '');
+                    var el = document.getElementById(id);
                     if (el) {
                         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         history.pushState(null, '', anchor);
@@ -1194,23 +1207,24 @@
                         window.location.href = (baseUrl || '') + anchor;
                     }
                 }
-
-                btn.addEventListener('mouseenter', function () {
+                function navigate() {
                     if (isSamePage()) {
                         doScroll();
                     } else {
                         window.location.href = (baseUrl || '') + anchor;
                     }
-                });
-
-                btn.addEventListener('click', function (e) {
+                }
+                link.addEventListener('mouseenter', navigate);
+                link.addEventListener('click', function (e) {
                     e.preventDefault();
-                    doScroll();
+                    navigate();
                 });
             }
-
-            document.addEventListener('DOMContentLoaded', initBanner);
-
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initBIC);
+            } else {
+                initBIC();
+            }
         })();
     </script>
     <section class="puntos-trabajo">
@@ -1369,8 +1383,8 @@
                     <img src="/assets/img/TIC-WHITE.png" alt="Logo" class="logo-footer">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <h5 class="footer-heading">TIC Trade International Cargo</h5>
-                    <h5 class="footer-heading">TIC Trade Transportes Nacionales</h5>
+                    <h5 class="footer-heading">TiC Trade International Cargo</h5>
+                    <h5 class="footer-heading">TiC Trade Transportes Nacionales</h5>
                     <p class="footer-tagline">Soluciones Logísticas Integrales </p>
                 </div>
                 <div class="col-md-3 mb-4">
