@@ -115,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Verificar que los elementos del mapa existen antes de crear los mapas
     const mapaRegionalElement = document.getElementById("mapaRegional");
     const chartdivElement = document.getElementById("chartdiv");
+    const mapaMaritimo = document.getElementById('mapaMaritimo');
 
     if (!mapaRegionalElement && !chartdivElement) {
         console.warn("Elementos de mapas no encontrados. No se cargarán los mapas.");
@@ -187,47 +188,27 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // ====================
-        // CIUDADES EN ESTADOS UNIDOS
+        // Recorrido animación
         // ====================
-        var ciudadesUSA = [
-            { lat: 31.9686, lon: -99.9018, nombre: "Texas" },
-            { lat: 27.5306, lon: -99.4803, nombre: "Laredo" },
-            //{ lat: 41.8781, lon: -87.6298, nombre: "Midwest (Chicago)" },
-            //{ lat: 35.1495, lon: -95.6706, nombre: "Centro Operativo USA" },
-
-        ];
-
-        // ====================
-        // CIUDADES EN MÉXICO
-        // ====================
-        var ciudadesMexico = [
-            { lat: 21.2548, lon: -100.8776, nombre: "Bajío (Base)" },
-            { lat: 25.5594, lon: -100.6607, nombre: "Norte (Expansión)" },
-            { lat: 19.3576, lon: -99.3945, nombre: "Centro (Distribución)" },
+        var ciudadesRuta = [
+            { lat: 19.3576, lon: -99.3945, nombre: "Centro (Distribución)" },  // 1. Centro México
+            { lat: 21.2548, lon: -100.8776, nombre: "Bajío (Base)" },            // 2. Bajío
+            { lat: 25.5594, lon: -100.6607, nombre: "Norte (Expansión)" },       // 3. Norte
+            { lat: 27.5306, lon: -99.4803, nombre: "Laredo" },                  // 4. Laredo
+            { lat: 31.9686, lon: -99.9018, nombre: "Texas" },                   // 5. Texas
         ];
 
         // Agregar puntos de ciudades
         var puntosRuta = [];
 
         // Agregar ciudades de USA
-        for (var i = 0; i < ciudadesUSA.length; i++) {
+        for (var i = 0; i < ciudadesRuta.length; i++) {
             var ciudad = pointSeriesNacional.pushDataItem({
-                latitude: ciudadesUSA[i].lat,
-                longitude: ciudadesUSA[i].lon,
-                name: ciudadesUSA[i].nombre
+                latitude: ciudadesRuta[i].lat,
+                longitude: ciudadesRuta[i].lon,
+                name: ciudadesRuta[i].nombre
             });
-            ciudad.set("tooltipText", ciudadesUSA[i].nombre);
-            puntosRuta.push(ciudad);
-        }
-
-        // Agregar ciudades de México
-        for (var i = 0; i < ciudadesMexico.length; i++) {
-            var ciudad = pointSeriesNacional.pushDataItem({
-                latitude: ciudadesMexico[i].lat,
-                longitude: ciudadesMexico[i].lon,
-                name: ciudadesMexico[i].nombre
-            });
-            ciudad.set("tooltipText", ciudadesMexico[i].nombre);
+            ciudad.set("tooltipText", ciudadesRuta[i].nombre);
             puntosRuta.push(ciudad);
         }
 
@@ -533,13 +514,141 @@ M414.563,373.781c-13.781,0-24.969-11.188-24.969-24.969s11.188-24.938,24.969-24.9
         chartInternacional.appear(1000, 100);
     }
 
-  if (window.location.hash) {
-    const target = document.querySelector(window.location.hash);
-    if (target) {
-      setTimeout(function () {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 300);
+    // MAPA Maritimo 
+    if (!mapaMaritimo) {
+        console.warn("Elemento 'mapaMaritimo' no encontrado. Se omitirá el mapa maritimo.");
+    } else {
+        var rootMaritimo = am5.Root.new("mapaMaritimo");
+
+        rootMaritimo.setThemes([
+            am5themes_Animated.new(rootMaritimo)
+        ]);
+
+        var chartMaritimo = rootMaritimo.container.children.push(am5map.MapChart.new(rootMaritimo, {
+            panX: "none",
+            panY: "none",
+            wheelX: "none",
+            wheelY: "none",
+            pinchZoom: false,
+            projection: am5map.geoMercator(),
+            swipeVelocityThreshold: 0,
+            tapToActivate: false
+        }));
+
+        var backgroundSeriesMaritimo = chartMaritimo.series.push(am5map.MapPolygonSeries.new(rootMaritimo, {}));
+        backgroundSeriesMaritimo.mapPolygons.template.setAll({
+            fill: rootMaritimo.interfaceColors.get("alternativeBackground"),
+            fillOpacity: 0,
+            strokeOpacity: 0
+        });
+
+        backgroundSeriesMaritimo.data.push({
+            geometry: am5map.getGeoRectangle(90, 180, -90, -180)
+        });
+
+        var polygonSeriesMaritimo = chartMaritimo.series.push(am5map.MapPolygonSeries.new(rootMaritimo, {
+            geoJSON: am5geodata_worldLow
+        }));
+
+        polygonSeriesMaritimo.mapPolygons.template.setAll({
+            fill: am5.color(0xd9782b),
+            stroke: am5.color(0xffffff),
+            strokeWidth: 0.5
+        });
+
+        var lineSeriesBarcoMaritimo = chartMaritimo.series.push(am5map.MapLineSeries.new(rootMaritimo, {}));
+        lineSeriesBarcoMaritimo.mapLines.template.setAll({
+            stroke: am5.color(0x1c1c1c),
+            strokeWidth: 3,
+            strokeOpacity: 0.8
+        });
+
+        var pointSeriesMaritimo = chartMaritimo.series.push(am5map.MapPointSeries.new(rootMaritimo, {}));
+
+        pointSeriesMaritimo.bullets.push(function () {
+            var circle = am5.Circle.new(rootMaritimo, {
+                radius: 8,
+                fill: am5.color(0xd9782b),
+                stroke: am5.color(0x1c1c1c),
+                strokeWidth: 2
+            });
+            return am5.Bullet.new(rootMaritimo, { sprite: circle });
+        });
+
+        var puntosBarcoMaritimo = [
+            { lat: 19.0524, lon: -104.3147, nombre: "Puerto Manzanillo" },
+            { lat: 19.2000, lon: -96.1333,  nombre: "Puerto Veracruz" },
+            { lat: 17.9500, lon: -102.1667, nombre: "Puerto Lázaro Cárdenas" },
+        ];
+
+        var puntosBarcoDataMaritimo = [];
+        for (var i = 0; i < puntosBarcoMaritimo.length; i++) {
+            var puntoRutaMaritimo = pointSeriesMaritimo.pushDataItem({
+                latitude:  puntosBarcoMaritimo[i].lat,
+                longitude: puntosBarcoMaritimo[i].lon
+            });
+            puntoRutaMaritimo.set("tooltipText", puntosBarcoMaritimo[i].nombre);
+            puntosBarcoDataMaritimo.push(puntoRutaMaritimo);
+        }
+
+        var routeBarcoMaritimo = lineSeriesBarcoMaritimo.pushDataItem({
+            pointsToConnect: puntosBarcoDataMaritimo
+        });
+
+        var boatSeriesMaritimo = chartMaritimo.series.push(am5map.MapPointSeries.new(rootMaritimo, {}));
+
+        var boatSVGMaritimo = `M0.171,276.524c0.085-2.411,0.427-4.821,1.344-7.125l42.667-106.667c3.264-8.085,11.093-13.397,19.819-13.397v-64c0-11.776,9.536-21.333,21.333-21.333h64c11.797,0,21.333,9.557,21.333,21.333v85.333v85.333h21.333v-42.667c0-11.776,9.536-21.333,21.333-21.333h21.333v-42.667c0-11.776,9.536-21.333,21.333-21.333h21.333V85.335c0-11.776,9.536-21.333,21.333-21.333h85.333c11.797,0,21.333,9.557,21.333,21.333v42.667h21.333c11.797,0,21.333,9.557,21.333,21.333v42.667h21.333c11.797,0,21.333,9.557,21.333,21.333v42.667c7.083,0,13.696,3.52,17.664,9.365c3.968,5.867,4.779,13.312,2.155,19.904l-41.152,102.827v17.28c0,23.509-19.115,42.624-42.603,42.624H85.338c-9.301,0-18.347-2.88-26.325-8.491c-1.365-0.939-2.688-1.899-4.181-3.221L-16.507,330.41c-6.187-5.568-9.728-13.547-9.728-21.845v-72.896C-26.234,277.036-26.084,276.801-0.171,276.524zM319.995,106.668v21.333h21.333h21.333v-21.333H319.995zM405.329,256.001h42.667v-21.333h-21.333h-21.333V256.001zM362.663,192.001h21.333h21.333v-21.333h-21.333h-21.333V192.001zM362.662,256.001v-21.333h-21.333h-21.333v21.333H362.662zM319.995,192.001v-21.333h-21.333h-21.333v21.333h21.333H319.995zM277.329,256.001v-21.333h-21.333h-21.333v21.333H277.329zM127.995,256.001v-64h-42.667h-6.891l-25.6,64H127.995z`;
+
+        var boatMaritimo = am5.Graphics.new(rootMaritimo, {
+            svgPath: boatSVGMaritimo,
+            scale: 0.06,
+            centerY: am5.p50,
+            centerX: am5.p50,
+            fill: am5.color(0x1c1c1c),
+            stroke: am5.color(0x0a3a4a),
+            strokeWidth: 1
+        });
+
+        boatSeriesMaritimo.bullets.push(function () {
+            var container = am5.Container.new(rootMaritimo, {});
+            container.children.push(boatMaritimo);
+            return am5.Bullet.new(rootMaritimo, { sprite: container });
+        });
+
+        var boatDataItemMaritimo = boatSeriesMaritimo.pushDataItem({
+            lineDataItem: routeBarcoMaritimo,
+            positionOnLine: 0,
+            autoRotate: true,
+            autoRotateAngle: 360
+        });
+
+        boatDataItemMaritimo.animate({
+            key: "positionOnLine",
+            to: 1,
+            duration: 20000,
+            loops: Infinity,
+            easing: am5.ease.linear
+        });
+
+        boatDataItemMaritimo.dataContext = { prevPosition: 0 };
+        boatDataItemMaritimo.on("positionOnLine", (value) => {
+            if (boatDataItemMaritimo.dataContext.prevPosition < value) {
+                boat.set("rotation", 360);
+            } else if (boatDataItemMaritimo.dataContext.prevPosition > value) {
+                boat.set("rotation", 360);
+            }
+            boatDataItemMaritimo.dataContext.prevPosition = value;
+        });
+
+        setTimeout(() => {
+            chartMaritimo.zoomToGeoPoint(
+                { latitude: 23.6345, longitude: -102.5528 },
+                10,
+                1000
+            );
+        }, 500);
+
+        chartMaritimo.appear(1000, 100);
     }
-  }
 
 });
