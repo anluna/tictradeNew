@@ -3935,7 +3935,7 @@ ul {
 
 .ubicaciones__card {
     width: 100%;
-    max-width: 450px;
+    max-width: 420px;
 }
 
 @media (max-width: 1300px) {
