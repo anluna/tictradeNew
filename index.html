@@ -972,7 +972,7 @@
             <p class="descripcion"></p>
 
             <div class="cards-grid">
-                <article class="card-item">
+                <article class="card-item" data-index="0">
                     <div class="background__white"> </div>
                     <div class="card-img-zone">
                         <img src="/img/04/fortW-removebg-preview.png"
@@ -989,12 +989,13 @@
 
                         <div class="card-cta-wrap">
                             <a class="card-cta"
-                                href="/servicios.html/#describe_services" target="">
+                                href="https://localhost/tic-tradeinternational/servicios/?card=0#describe_services"
+                                target="">
                                 Ver más </a>
                         </div>
                     </div>
                 </article>
-                <article class="card-item">
+                <article class="card-item" data-index="1">
                     <div class="background__white"> </div>
                     <div class="card-img-zone">
                         <img src="/img/04/transport-orange-removebg-preview.png"
@@ -1010,12 +1011,13 @@
 
                         <div class="card-cta-wrap">
                             <a class="card-cta"
-                                href="/servicios.html/#describe_services" target="">
+                                href="https://localhost/tic-tradeinternational/servicios/?card=1#describe_services"
+                                target="">
                                 Ver más </a>
                         </div>
                     </div>
                 </article>
-                <article class="card-item">
+                <article class="card-item" data-index="2">
                     <div class="background__white"> </div>
                     <div class="card-img-zone">
                         <img src="/img/04/contract-orange-removebg-preview.png"
@@ -1031,7 +1033,8 @@
 
                         <div class="card-cta-wrap">
                             <a class="card-cta"
-                                href="/servicios.html/#describe_services" target="">
+                                href="https://localhost/tic-tradeinternational/servicios/?card=2#describe_services"
+                                target="">
                                 Ver más </a>
                         </div>
                     </div>
@@ -1040,38 +1043,35 @@
         </div>
     </section>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            if (window.location.hash) {
-                const hash = window.location.hash;
-                window.addEventListener('load', function () {
-                    setTimeout(function () {
-                        const target = document.querySelector(hash);
-                        if (target) {
-                            const offset = 100;
-                            const top = target.getBoundingClientRect().top + window.scrollY - offset;
-                            window.scrollTo({ top: top, behavior: 'smooth' });
-                        }
-                    }, 400);
-                });
-            }
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+    if (window.location.hash) {
+                setTimeout(function () {
+                    const target = document.querySelector(window.location.hash);
+                    if (target) {
+                        const top = target.getBoundingClientRect().top + window.scrollY - 100;
+                        window.scrollTo({ top: top, behavior: 'smooth' });
+                    }
+                }, 400);
+    }
+
             document.querySelectorAll('a[href*="#"]').forEach(function (anchor) {
                 anchor.addEventListener('click', function (e) {
                     const url = new URL(this.href);
                     const hash = url.hash;
-
-                    if (hash && url.pathname === window.location.pathname) {
+                    if (hash && url.pathname === window.location.pathname && url.search === window.location.search) {
                         const target = document.querySelector(hash);
                         if (target) {
                             e.preventDefault();
-                            const offset = 100;
-                            const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                            const top = target.getBoundingClientRect().top + window.scrollY - 100;
                             window.scrollTo({ top: top, behavior: 'smooth' });
                             history.pushState(null, null, hash);
                         }
                     }
                 });
-            });
-        });
+    });
+
+});
     </script>
     <section class="texto__valores">
         <div class="container">
